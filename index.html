@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; frame-ancestors 'none'; object-src 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Sungai Jaga A - Pesona Sungai Tropis Bengkayang</title>
+  
+  <!-- SEO Meta Tags -->
+  <link rel="icon" href="logo-bengkayang.png" type="image/png">
+  <meta name="description" content="Eksplorasi keindahan alam, potensi wisata, perikanan, pertanian, dan ekosistem lestari Sungai Jaga A, Bengkayang, Kalimantan Barat.">
+  <meta name="keywords" content="Sungai Jaga A, Bengkayang, Kalimantan, Wisata Sungai, Irigasi Kalimantan, Desa Wisata">
+  <meta name="author" content="Pemerintah Desa Sungai Jaga A">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="index.css">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Supabase JS Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="navbar-container">
+      <a href="#home" class="logo">
+        <img src="logo-bengkayang.png" alt="Logo Bengkayang" style="height: 42px; width: auto; object-fit: contain;">
+        <span class="logo-text">Sungai Jaga A</span>
+      </a>
+      
+      <nav class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-link active">Beranda</a>
+        <a href="#about" class="nav-link">Tentang</a>
+        <a href="#potential" class="nav-link">Potensi</a>
+        <a href="#gallery" class="nav-link">Galeri</a>
+        <a href="#contact" class="nav-link">Kontak</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#" target="_blank" class="btn btn-primary btn-whatsapp" id="navWhatsappBtn">
+          <i data-lucide="phone"></i> WhatsApp
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+          <i data-lucide="menu" id="menuIcon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+    
+    <div class="hero-content">
+      <div class="hero-badge animate-fade-in">
+        <span class="live-pulse"></span>
+        <i data-lucide="compass"></i> BENGKAYANG, KALIMANTAN BARAT
+      </div>
+      <h1 class="hero-title animate-fade-in" id="heroTitle">
+        Sungai Jaga A - Bengkayang
+      </h1>
+      <p class="hero-subtitle animate-fade-in" id="heroSubtitle">Menjaga kelestarian alam dan menyusuri keindahan sungai tropis Kalimantan yang segar, asri, dan menenangkan jiwa.</p>
+      <div class="hero-cta animate-fade-in">
+        <a href="#contact" class="btn btn-accent btn-lg glow-btn">
+          <i data-lucide="sparkles"></i> Eksplorasi
+        </a>
+        <a href="#" target="_blank" class="btn btn-light btn-lg btn-whatsapp glass-btn" id="heroWhatsappBtn">
+          <i data-lucide="message-circle"></i> Hubungi Kami
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>Scroll Bawah</span>
+      <i data-lucide="chevron-down" class="indicator-arrow"></i>
+    </div>
+  </section>
+
+  <!-- Tentang Section -->
+  <section id="about" class="section about-section">
+    <div class="container container-grid grid-2 about-container">
+      <div class="about-image-wrapper scroll-trigger">
+        <div class="about-image-decor"></div>
+        <div class="glow-orb-behind"></div>
+        <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80" alt="Sungai Tropis Asri" class="about-image" id="aboutImg">
+      </div>
+      <div class="about-description scroll-trigger" style="padding-top: 10px;">
+        <div class="section-tag" style="margin-bottom: 20px;"><i data-lucide="landmark"></i> Kilas Sejarah & Peran</div>
+        <h2 class="section-title">Aliran Kehidupan Masyarakat Desa</h2>
+        <p class="section-text">
+          Sejak dahulu kala, Sungai Jaga A telah menjadi anugerah alam yang tak ternilai bagi masyarakat Bengkayang. Sungai ini bukan sekadar aliran air, melainkan jantung kehidupan yang menopang peradaban lokal, menyediakan air bersih, mendukung transportasi tradisional, serta mendistribusikan berkah kesuburan tanah di sekitarnya.
+        </p>
+        <p class="section-text">
+          Dengan dikelilingi hutan tropis Kalimantan yang asri, keasrian dan ekosistem sungai ini senantiasa dirawat bersama oleh masyarakat adat dan pemerintah setempat. Jernihnya air sungai dan pepohonan rimbun yang membingkainya menciptakan lanskap memukau yang menjaga keseimbangan hayati sekaligus mengundang decak kagum setiap pasang mata yang berkunjung.
+        </p>
+        <div class="about-stats-grid">
+          <div class="stat-card glass-card">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Air Alami Kalimantan</span>
+          </div>
+          <div class="stat-card glass-card">
+            <span class="stat-num">500+</span>
+            <span class="stat-label">Kepala Keluarga Terbantu</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Potensi & Aktivitas Section -->
+  <section id="potential" class="section potential-section bg-light relative-container">
+    <div class="container">
+      <div class="text-center mb-60 scroll-trigger">
+        <div class="section-tag inline-block"><i data-lucide="sparkles"></i> Potensi & Nilai Unggul</div>
+        <h2 class="section-title">4 Pilar Utama Desa</h2>
+        <p class="section-subtitle">Bagaimana aliran sungai memberikan kontribusi vital secara ekologis dan ekonomis bagi masyarakat.</p>
+      </div>
+
+      <div class="grid grid-4 scroll-trigger bento-grid">
+        <!-- Card 1 -->
+        <div class="card potential-card bento-card">
+          <div class="card-icon-box blue-accent">
+            <i data-lucide="fish"></i>
+          </div>
+          <h3 class="card-title">Perikanan Tangkap & Kelautan</h3>
+          <p class="card-text">Sebagai desa di kawasan pesisir Kepulauan, potensi hasil tangkapan laut dan sungai menjadi tulang punggung ekonomi utama bagi para nelayan setempat.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card potential-card bento-card">
+          <div class="card-icon-box green-accent">
+            <i data-lucide="leaf"></i>
+          </div>
+          <h3 class="card-title">Pertanian & Perkebunan</h3>
+          <p class="card-text">Lahan yang subur dimanfaatkan masyarakat untuk bercocok tanam padi, hortikultura, serta perkebunan kelapa yang menopang ketahanan pangan desa.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card potential-card bento-card">
+          <div class="card-icon-box amber-accent">
+            <i data-lucide="package"></i>
+          </div>
+          <h3 class="card-title">UMKM Olahan Hasil Laut</h3>
+          <p class="card-text">Pemberdayaan masyarakat dalam memproduksi produk unggulan lokal seperti ikan asin, ebi, dan terasi yang bernilai jual kompetitif di pasar.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card potential-card bento-card">
+          <div class="card-icon-box teal-accent">
+            <i data-lucide="palmtree"></i>
+          </div>
+          <h3 class="card-title">Pariwisata & Pesisir</h3>
+          <p class="card-text">Potensi panorama alam perairan dan kelestarian ekosistem pesisirnya membuka peluang besar bagi pengembangan kawasan ekowisata daerah masa depan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeri Dinamis Section -->
+  <section id="gallery" class="section gallery-section">
+    <div class="container">
+      <div class="text-center mb-60 scroll-trigger">
+        <div class="section-tag inline-block"><i data-lucide="image"></i> Dokumentasi Visual</div>
+        <h2 class="section-title">Galeri Keindahan Sungai</h2>
+        <p class="section-subtitle">Galeri foto yang dikelola secara dinamis untuk mendokumentasikan sudut asri Sungai Jaga A.</p>
+      </div>
+
+      <div class="gallery-grid scroll-trigger" id="galleryGrid">
+        <!-- Dynamic content from localStorage/fallback will be injected here by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontak & Footer Section -->
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="footer-top grid-2 mb-60 scroll-trigger" style="gap: 60px; align-items: start;">
+        <div class="footer-info">
+          <a href="#home" class="logo mb-30" style="display: flex; align-items: center; margin-bottom: 25px;">
+            <img src="logo-bengkayang.png" alt="Logo Bengkayang" style="height: 52px; width: auto; object-fit: contain;">
+            <span class="logo-text" style="font-size: 1.6rem; margin-left: 10px;">Sungai Jaga A</span>
+          </a>
+          <p class="footer-desc" style="margin-bottom: 30px; line-height: 1.8;">
+            Pemerintah Desa Sungai Jaga A, Kecamatan Sungai Raya Kepulauan, Kabupaten Bengkayang, Kalimantan Barat, Indonesia.
+          </p>
+          <div class="footer-meta">
+            <div class="meta-item">
+              <i data-lucide="user"></i>
+              <div>
+                <span class="label">Kepala Desa Jaga A</span>
+                <strong class="value" id="kadesName">Bpk. Supriadi</strong>
+              </div>
+            </div>
+            <div class="meta-item">
+              <i data-lucide="map-pin"></i>
+              <div>
+                <span class="label">Alamat Kantor Desa</span>
+                <strong class="value">Jl. Raya Sungai Jaga A, Bengkayang</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-cta-box" style="margin-top: 20px;">
+          <div class="cta-inner">
+            <h3 class="cta-title">Hubungi Kami Secara Langsung</h3>
+            <p class="cta-text">Punya pertanyaan seputar kunjungan wisata, koordinasi instansi, atau program kerja sama desa? Silakan hubungi WhatsApp Kepala Desa kami.</p>
+            <a href="#" target="_blank" class="btn btn-accent btn-lg btn-whatsapp w-full block text-center" id="footerWhatsappBtn">
+              <i data-lucide="phone-call"></i> Chat WhatsApp Kepala Desa
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">&copy; <span id="currentYear">2026</span> Desa Sungai Jaga A. Hak Cipta Dilindungi.</p>
+        <div class="footer-links">
+          <a href="#">Kebijakan Privasi</a>
+          <a href="#">Sarat & Ketentuan</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal for Gallery -->
+  <div class="lightbox" id="lightboxModal">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Tutup"><i data-lucide="x"></i></button>
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightboxImg">
+    </div>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="js/app.js"></script>
+</body>
+</html>

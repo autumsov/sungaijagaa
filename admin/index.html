@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; frame-ancestors 'none'; object-src 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Portal Admin - Desa Sungai Jaga A</title>
+  
+  <link rel="icon" href="../logo-bengkayang.png" type="image/png">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="admin.css">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Supabase JS Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+</head>
+<body class="admin-body">
+
+  <!-- Login Section -->
+  <div class="login-wrapper" id="loginWrapper">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-logo" style="margin-bottom: 20px;">
+          <img src="../logo-bengkayang.png" alt="Logo Bengkayang" style="height: 60px; width: auto;">
+        </div>
+        <h1>Portal Admin Jaga A</h1>
+        <p>Silakan masuk menggunakan kredensial admin desa.</p>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <div class="alert alert-error" id="loginAlert">Kredensial salah. Coba lagi.</div>
+        
+        <div class="form-group">
+          <label for="username">Email Admin / Username</label>
+          <div class="input-icon-wrapper">
+            <i data-lucide="mail"></i>
+            <input type="text" id="username" placeholder="Masukkan email atau username admin" required autocomplete="off">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-icon-wrapper">
+            <i data-lucide="lock"></i>
+            <input type="password" id="password" placeholder="Masukkan password" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full">Masuk Dashboard</button>
+      </form>
+
+      <div class="login-footer">
+        <a href="../" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Website</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Section -->
+  <div class="dashboard-wrapper hidden" id="dashboardWrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+          <img src="../logo-bengkayang.png" alt="Logo Bengkayang" style="height: 32px; width: auto; object-fit: contain;">
+          <span class="logo-text">Admin Jaga A</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <button class="menu-tab active" data-tab="general">
+          <i data-lucide="settings"></i> Pengaturan Umum
+        </button>
+        <button class="menu-tab" data-tab="hero">
+          <i data-lucide="image"></i> Gambar Hero
+        </button>
+        <button class="menu-tab" data-tab="gallery">
+          <i data-lucide="images"></i> Galeri Foto
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="admin-profile">
+          <div class="avatar"><i data-lucide="shield"></i></div>
+          <div class="details">
+            <span class="name">Administrator</span>
+            <span class="role">Pengelola Portal</span>
+          </div>
+        </div>
+        <button class="btn btn-logout" id="logoutBtn">
+          <i data-lucide="log-out"></i> Keluar
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top header bar -->
+      <header class="topbar">
+        <div class="title-area">
+          <h2 id="currentTabTitle">Pengaturan Umum</h2>
+          <p class="breadcrumbs">Dashboard / <span id="currentTabBreadcrumb">Pengaturan Umum</span></p>
+        </div>
+        <a href="../" target="_blank" class="btn btn-view-site">
+          <i data-lucide="external-link"></i> Kunjungi Website
+        </a>
+      </header>
+
+      <!-- Toast Alert Notification -->
+      <div class="toast" id="toast">
+        <i data-lucide="check-circle" class="toast-icon"></i>
+        <span class="toast-message">Perubahan berhasil disimpan!</span>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="content-body">
+        
+        <!-- Tab 1: General (WA & Kades name) -->
+        <section class="tab-pane active" id="tab-general">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Profil & Data Kontak Desa</h3>
+              <p>Kelola data kontak global WhatsApp Kepala Desa dan identitas dasar yang tertera.</p>
+            </div>
+            
+            <form id="generalSettingsForm" class="panel-form">
+              <div class="form-row grid-2">
+                <div class="form-group">
+                  <label for="inputKadesName">Nama Kepala Desa</label>
+                  <input type="text" id="inputKadesName" placeholder="Contoh: Bpk. Supriadi" required>
+                  <span class="input-help">Nama lengkap beserta gelar atau jabatan.</span>
+                </div>
+                
+                <div class="form-group">
+                  <label for="inputWhatsapp">Nomor WhatsApp Kepala Desa</label>
+                  <input type="text" id="inputWhatsapp" placeholder="Contoh: 6281234567890" required>
+                  <span class="input-help">Format nomor menggunakan kode negara (Contoh: 6281234567890).</span>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="saveGeneralBtn">
+                  <i data-lucide="save"></i> Simpan Pengaturan
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- Tab 2: Hero Settings -->
+        <section class="tab-pane" id="tab-hero">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Pengelola Gambar Utama (Hero)</h3>
+              <p>Ganti foto pemandangan sungai utama di beranda secara langsung. Menggunakan penyimpanan browser lokal.</p>
+            </div>
+
+            <div class="hero-manager-layout grid-2">
+              <!-- Left side: Image Upload & Controls -->
+              <div class="manager-controls">
+                <div class="form-group">
+                  <label>Pilih File Foto Baru</label>
+                  <div class="file-drop-area" id="heroDropArea">
+                    <i data-lucide="cloud-upload" class="upload-icon"></i>
+                    <p>Klik atau Seret file foto ke sini</p>
+                    <span class="limit-info">Format: JPG, PNG, WEBP (Maksimal 2MB untuk penyimpanan optimal)</span>
+                    <input type="file" id="inputHeroFile" accept="image/*" class="file-input">
+                  </div>
+                </div>
+
+                <div class="manager-actions">
+                  <button type="button" class="btn btn-danger-outline" id="resetHeroBtn">
+                    <i data-lucide="rotate-ccw"></i> Reset ke Foto Bawaan
+                  </button>
+                </div>
+              </div>
+
+              <!-- Right side: Preview Card -->
+              <div class="manager-preview">
+                <label>Pratinjau Foto Hero Aktif</label>
+                <div class="img-preview-box">
+                  <img id="heroPreviewImg" src="" alt="Pratinjau Hero">
+                  <span class="preview-overlay">Hero Section Background</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 3: Gallery Settings -->
+        <section class="tab-pane" id="tab-gallery">
+          <div class="panel mb-30">
+            <div class="panel-header">
+              <h3>Tambah Foto Dokumentasi Desa</h3>
+              <p>Unggah foto dokumentasi baru untuk langsung ditambahkan ke grid galeri utama.</p>
+            </div>
+
+            <form id="addGalleryForm" class="panel-form">
+              <div class="gallery-upload-layout grid-2">
+                <div class="form-col">
+                  <div class="form-group">
+                    <label for="inputGalleryTitle">Judul / Deskripsi Foto</label>
+                    <input type="text" id="inputGalleryTitle" placeholder="Contoh: Perahu Nelayan di Hulu" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputGalleryFile">Pilih File Foto</label>
+                    <input type="file" id="inputGalleryFile" accept="image/*" required>
+                    <span class="input-help">Format file JPG, PNG, WEBP. Ukuran file ideal di bawah 1MB.</span>
+                  </div>
+                  <div class="form-actions" style="margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary">
+                      <i data-lucide="plus-circle"></i> Tambahkan ke Galeri
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Small Preview panel for select -->
+                <div class="form-col">
+                  <label>Pratinjau Foto Terpilih</label>
+                  <div class="gallery-selected-preview" id="gallerySelectedPreview">
+                    <div class="placeholder"><i data-lucide="image"></i><span>Belum memilih foto</span></div>
+                    <img id="tempGalleryImg" class="hidden" src="" alt="Temporary Preview">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Daftar Koleksi Galeri (<span id="galleryCount">0</span> Foto)</h3>
+              <p>Daftar foto yang sedang aktif di website. Klik tombol hapus untuk membuangnya.</p>
+            </div>
+
+            <div class="admin-gallery-grid" id="adminGalleryGrid">
+              <!-- Admin gallery list injected by JS -->
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
